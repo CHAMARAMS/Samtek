@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAMTECH Solutions — Futuristic</title>
+  <meta name="description" content="SAMTECH Solutions — IT, Security & ELV. Futuristic dark landing page." />
+  <meta name="author" content="Srikanth Waradan" />
+  <link rel="icon" href="assets/images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#05060a; --card:#0c0f16; --muted:#98a6b6;
+      --neon-cyan:#00f0ff; --neon-blue:#5be0ff; --neon-purple:#8b5cff;
+      --glass: rgba(255,255,255,0.03); --radius:14px;
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto; background:var(--bg);color:#e8f5ff;overflow-x:hidden}
+    a{color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    /* NAV */
+    header{position:fixed;left:0;right:0;top:18px;z-index:60}
+    .nav{max-width:var(--maxw);margin:0 auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);backdrop-filter:blur(8px);border-radius:12px;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--neon-purple),var(--neon-cyan));display:flex;align-items:center;justify-content:center;font-weight:800;color:#05060a}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:8px;transition:all .18s}
+    nav a:hover{box-shadow:0 6px 30px rgba(0,240,255,0.06);transform:translateY(-3px)}
+    .cta{background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple));padding:9px 14px;border-radius:12px;color:#05060a;font-weight:700}
+
+    /* Hero */
+    .hero{min-height:90vh;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding-top:84px;position:relative}
+    .hero-left .eyebrow{color:var(--neon-cyan);font-weight:700;letter-spacing:.8px}
+    .headline{font-size:44px;line-height:1.02;margin:12px 0;font-weight:800;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple));-webkit-background-clip:text;color:transparent}
+    .sub{color:var(--muted);max-width:680px}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+
+    /* right panel */
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;padding:18px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.03)}
+
+    /* CANVAS */
+    #bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+    /* SERVICES */
+    .section{padding:72px 0}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;min-height:220px;position:relative;overflow:visible;border:1px solid rgba(255,255,255,0.03);transition:transform .35s,box-shadow .3s}
+    .card:hover{transform:translateY(-12px) rotateX(6deg);box-shadow:0 30px 80px rgba(91,224,255,0.06), 0 6px 28px rgba(139,92,255,0.04)}
+    .card .icon{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:linear-gradient(135deg, rgba(99,50,200,0.12), rgba(0,240,255,0.06))}
+    .card h3{margin:6px 0}
+    .flip-wrap{perspective:1200px}
+    .flip-inner{transition:transform .7s;transform-style:preserve-3d}
+    .flip:hover .flip-inner{transform:rotateY(180deg)}
+    .face{position:relative;border-radius:10px;backface-visibility:hidden}
+    .back{transform:rotateY(180deg);position:absolute;inset:0;padding:18px}
+
+    /* Why */
+    .why{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .bar{height:12px;border-radius:12px;background:rgba(255,255,255,0.04);overflow:hidden}
+    .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-blue));border-radius:12px;transition:width 1.2s}
+    .counters{display:flex;gap:12px;margin-top:18px}
+    .counter{flex:1;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:14px;border-radius:12px}
+
+    /* Testimonials */
+    .testimonials{position:relative}
+    .slider{display:flex;gap:12px;overflow:hidden}
+    .slide{min-width:100%;flex-shrink:0;transition:transform .6s}
+
+    /* Blog */
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+    /* Footer */
+    footer{padding:48px 0;color:var(--muted)}
+
+    /* micro */
+    .muted{color:var(--muted)}
+    .pulse{animation:pulse 2.6s infinite}
+    @keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}100%{transform:scale(1);opacity:1}}
+
+    /* responsive */
+    @media (max-width:1100px){.hero{grid-template-columns:1fr}.services-grid{grid-template-columns:repeat(2,1fr)}.why{grid-template-columns:1fr}.blog-grid{grid-template-columns:1fr}}
+    @media (max-width:640px){.headline{font-size:28px}.nav nav ul{display:none}.container{padding:18px}}
+
+    /* small helpers */
+    .whatsapp-float{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple));padding:14px;border-radius:999px;box-shadow:0 20px 50px rgba(0,0,0,0.6);z-index:80}
+
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <header>
+    <div class="nav container">
+      <div class="brand"><div class="logo">S</div>
+        <div>
+          <div style="font-weight:700">SAMTECH Solutions</div>
+          <div style="font-size:12px;color:var(--muted)">IT • Security • ELV</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li style="display:inline-block"><a href="#services">Services</a></li>
+          <li style="display:inline-block"><a href="#why">Why Us</a></li>
+          <li style="display:inline-block"><a href="#projects">Projects</a></li>
+          <li style="display:inline-block"><a href="#contact" class="cta">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="position:relative;z-index:10">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">FUTURISTIC • SECURE • RELIABLE</div>
+        <h1 class="headline">Where Technology Meets Excellence — SAMTECH Solutions</h1>
+        <p class="sub">Professional IT & Security services: Laptop & Desktop repairs, Business IT, CCTV & Access Control, Biometric systems, Structured cabling, and more. Trusted brands and experienced engineers.</p>
+        <div class="cta-row">
+          <a class="cta" href="#contact">Get a Quote</a>
+          <a style="padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)" href="#services">Explore Services</a>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:18px">
+          <div class="panel" style="display:flex;align-items:center;gap:12px">
+            <div style="font-weight:700">99.9%</div>
+            <div class="muted">Uptime & SLA</div>
+          </div>
+          <div class="panel" style="display:flex;align-items:center;gap:12px">
+            <div style="font-weight:700">10+</div>
+            <div class="muted">Years Experience</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h4 style="margin:0 0 8px">Platform Snapshot</h4>
+        <div style="height:140px;background:linear-gradient(90deg, rgba(91,224,255,0.04), rgba(139,92,255,0.03));border-radius:10px;display:flex;align-items:center;justify-content:center"> 
+          <svg width="240" height="60" viewBox="0 0 240 60"><path d="M0 40C40 20 80 10 120 32C160 54 200 6 240 28" stroke="url(#g)" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--muted)">Active Nodes</div>
+            <div style="font-weight:700">28</div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--muted)">Latency</div>
+            <div style="font-weight:700">24ms</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <h2 style="margin:0 0 8px">Our Services</h2>
+      <p class="muted">Comprehensive IT, security and ELV solutions tailored for businesses and individuals.</p>
+      <div class="services-grid" style="margin-top:18px">
+
+        <div class="card flip-wrap">
+          <div class="flip-inner">
+            <div class="face">
+              <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="14" rx="2" stroke="url(#s)" stroke-width="1.6"/></svg></div>
+              <h3>Laptop & Desktop Sales & Repairs</h3>
+              <p class="muted">Quality systems and expert repair services to keep your devices running.</p>
+            </div>
+            <div class="face back">
+              <h4>What we deliver</h4>
+              <p class="muted">Warranty repairs, upgrades, diagnostics, and supply of branded systems.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card flip-wrap">
+          <div class="flip-inner">
+            <div class="face">
+              <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 17v-6a4 4 0 014-4h8a4 4 0 014 4v6" stroke="url(#s)" stroke-width="1.6"/></svg></div>
+              <h3>Business IT Solutions</h3>
+              <p class="muted">End-to-end IT with setup, upgrades, and support to enhance operations.</p>
+            </div>
+            <div class="face back">
+              <h4>What we deliver</h4>
+              <p class="muted">Network design, managed services, backups and support SLAs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card flip-wrap">
+          <div class="flip-inner">
+            <div class="face">
+              <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="url(#s)" stroke-width="1.6"/></svg></div>
+              <h3>CCTV & Security Systems</h3>
+              <p class="muted">Surveillance, access control and monitoring solutions from trusted brands.</p>
+            </div>
+            <div class="face back">
+              <h4>What we deliver</h4>
+              <p class="muted">Installation, remote monitoring setups and maintenance contracts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card flip-wrap">
+          <div class="flip-inner">
+            <div class="face">
+              <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M8 11h8" stroke="url(#s)" stroke-width="1.6"/></svg></div>
+              <h3>Biometric & Electrical Solutions</h3>
+              <p class="muted">Biometric systems, structured cabling, and professional wiring services.</p>
+            </div>
+            <div class="face back">
+              <h4>What we deliver</h4>
+              <p class="muted">Face/Access systems, cabling, and compliant electrical installations.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Choose -->
+    <section id="why" class="section">
+      <div class="why">
+        <div>
+          <h5 class="small-title">Why Choose SAMTECH</h5>
+          <h2 style="margin-top:6px">Trusted Partner for IT, Security & ELV</h2>
+          <p class="muted">We combine technical excellence and responsive support to deliver dependable solutions. Our engineers are certified and trained on latest technologies.</p>
+
+          <div style="margin-top:20px">
+            <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between"><span>Deployment Speed</span><span>92%</span></div><div class="bar"><i data-width="92%"></i></div></div>
+            <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between"><span>Client Satisfaction</span><span>98%</span></div><div class="bar"><i data-width="98%"></i></div></div>
+            <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between"><span>Automation Coverage</span><span>86%</span></div><div class="bar"><i data-width="86%"></i></div></div>
+          </div>
+
+          <div class="counters">
+            <div class="counter"><div style="font-size:22px;font-weight:700" data-target="120">0</div><div class="muted">Projects</div></div>
+            <div class="counter"><div style="font-size:22px;font-weight:700" data-target="24">0</div><div class="muted">Engineers</div></div>
+            <div class="counter"><div style="font-size:22px;font-weight:700" data-target="15">0</div><div class="muted">Partners</div></div>
+          </div>
+        </div>
+
+        <div style="text-align:center">
+          <img src="assets/images/img1.jpg" alt="SAMTECH" style="width:100%;border-radius:12px;display:block">
+          <div style="margin-top:12px;background:linear-gradient(90deg, rgba(139,92,255,0.06), rgba(0,240,255,0.03));padding:12px;border-radius:10px"> <strong>10+</strong> <div class="muted">Years of Excellence</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (simple auto slider) -->
+    <section class="section testimonials" id="testimonials">
+      <h3>What Clients Say</h3>
+      <div style="overflow:hidden;margin-top:14px">
+        <div class="slider" id="testSlider">
+          <div class="slide" style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;min-height:140px">
+            <p class="muted">"SAMTECH upgraded our systems quickly and the team provided excellent aftercare. Highly recommended."</p>
+            <div style="margin-top:12px;font-weight:700">— Mario Spe</div>
+          </div>
+          <div class="slide" style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;min-height:140px">
+            <p class="muted">"Professional installation and responsive support for our CCTV and attendance systems."</p>
+            <div style="margin-top:12px;font-weight:700">— Petey Cru</div>
+          </div>
+          <div class="slide" style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;min-height:140px">
+            <p class="muted">"Great value, reliable delivery and highly skilled technicians."</p>
+            <div style="margin-top:12px;font-weight:700">— Anna Sth</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h3>Latest Case Studies</h3>
+      <div class="blog-grid" style="margin-top:18px">
+        <div style="background:var(--card);padding:12px;border-radius:12px"> <img src="assets/images/blog1.jpg" style="width:100%;border-radius:8px"><h4>Security & Attendance - SARALAA</h4><p class="muted">EZVIZ & HIKVision integration for improved security</p></div>
+        <div style="background:var(--card);padding:12px;border-radius:12px"> <img src="assets/images/blog2.jpg" style="width:100%;border-radius:8px"><h4>Desktop Upgrade - SD Design</h4><p class="muted">High end PC upgrades and CCTV install</p></div>
+        <div style="background:var(--card);padding:12px;border-radius:12px"> <img src="assets/images/blog3.jpg" style="width:100%;border-radius:8px"><h4>IT Management - INNERBIZ</h4><p class="muted">Full IT management services</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h3>Contact Us</h3>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:12px">
+        <form id="contactForm" style="background:var(--card);padding:18px;border-radius:12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input type="text" name="name" placeholder="Full name" required style="padding:12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit">
+            <input type="email" name="email" placeholder="Email" required style="padding:12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit">
+          </div>
+          <input type="text" name="company" placeholder="Company (optional)" style="margin-top:12px;padding:12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit">
+          <textarea name="message" placeholder="Brief description" required style="margin-top:12px;padding:12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit;min-height:120px"></textarea>
+          <button class="cta" style="margin-top:12px;border:none;cursor:pointer">Send Message</button>
+        </form>
+
+        <aside style="background:linear-gradient(90deg, rgba(139,92,255,0.04), rgba(0,240,255,0.03));padding:18px;border-radius:12px">
+          <h4>Office</h4>
+          <p class="muted">Colombo, Sri Lanka · Harare, Zimbabwe (remote-first)</p>
+          <div style="margin-top:12px"><div class="muted">Email</div><div>hello@samtech.lk</div></div>
+          <div style="margin-top:8px"><div class="muted">Phone</div><div>+94 71 235 5328</div></div>
+          <div style="margin-top:12px"><a class="cta" href="#">Chat on WhatsApp</a></div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="section">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>&copy; 2025 SAMTECH Solutions</div>
+        <div class="muted">84, 11 Hiripitiya Road, Pannipitiya 10230 · info@samtech.lk</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <a href="https://wa.me/+94712355328?text=Hello,%20I%20am%20interested%20in%20your%20products!" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    /* Canvas background: particles + soft gradient waves */
+    const canvas = document.getElementById('bg'); const ctx = canvas.getContext('2d'); let W=canvas.width=innerWidth, H=canvas.height=innerHeight;
+    window.addEventListener('resize',()=>{W=canvas.width=innerWidth;H=canvas.height=innerHeight;init();});
+    let parts=[]; function rand(a,b){return Math.random()*(b-a)+a}
+    function init(){parts=[]; const count = Math.max(12,Math.round((W*H)/140000)); for(let i=0;i<count;i++){parts.push({x:rand(0,W),y:rand(0,H),r:rand(0.8,3),vx:rand(-0.3,0.3),vy:rand(-0.15,0.15),a:rand(0.04,0.16)})}}
+    init(); function draw(){ctx.clearRect(0,0,W,H); // gradient waves
+      const g=ctx.createLinearGradient(0,0,W,H); g.addColorStop(0,'rgba(6,6,10,0.6)'); g.addColorStop(1,'rgba(11,7,22,0.28)'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+      for(let i=0;i<3;i++){const t=(performance.now()/8000)+i*1.3; ctx.beginPath(); ctx.fillStyle=`rgba(${30+i*40},${40+i*50},${120+i*40},${0.03 + i*0.02})`; const amp=120+i*70; ctx.ellipse(W/2 + Math.sin(t)*amp, H/2 + Math.cos(t)*amp, W*0.9 - i*240, H*0.42 + Math.sin(t)*60, 0, 0, Math.PI*2); ctx.fill();}
+      for(const p of parts){p.x+=p.vx; p.y+=p.vy; if(p.x<-50)p.x=W+50; if(p.x>W+50)p.x=-50; if(p.y<-50)p.y=H+50; if(p.y>H+50)p.y=-50; ctx.beginPath(); ctx.fillStyle = `rgba(91,224,255,${p.a})`; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();}
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    /* simple reveal on scroll */
+    const reveals = document.querySelectorAll('.section, .hero-left, .panel, .card');
+    const io = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1; e.target.style.transform='translateY(0)'; io.unobserve(e.target)}}),{threshold:0.12}});
+    reveals.forEach(r=>{r.style.opacity=0; r.style.transform='translateY(12px)'; io.observe(r)});
+
+    /* progress bars */
+    document.querySelectorAll('.bar > i').forEach(el=>{const w=el.dataset.width||'0%'; setTimeout(()=>el.style.width=w,400)});
+
+    /* counters */
+    function animateCount(el, target, duration=1200){let start=null; function step(ts){if(!start)start=ts; const prog=Math.min((ts-start)/duration,1); el.textContent=Math.floor(prog*target); if(prog<1)requestAnimationFrame(step); else el.textContent=target;} requestAnimationFrame(step)}
+    const counters = document.querySelectorAll('[data-target]'); counters.forEach(c=>{const target = parseInt(c.dataset.target||c.textContent||0,10); const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target,target); obs.unobserve(e.target)}});},{threshold:0.3}); obs.observe(c)});
+
+    /* testimonial autoplay slider */
+    const slider = document.getElementById('testSlider'); let sIndex=0; const slides = slider.children;
+    function showSlide(i){slider.style.transform = `translateX(${-i*100}%)`}
+    function next(){sIndex=(sIndex+1)%slides.length; showSlide(sIndex);}
+    setInterval(next,4200);
+
+    /* contact form fake submit */
+    document.getElementById('contactForm').addEventListener('submit', e=>{e.preventDefault(); const btn = e.target.querySelector('button'); btn.textContent='Sending...'; btn.disabled=true; setTimeout(()=>{btn.textContent='Sent ✓';},900)});
+
+    // smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', function(e){e.preventDefault(); const t=document.querySelector(this.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'});}));
+
+  </script>
+</body>
+</html>
